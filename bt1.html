@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Số nguyên tố</title>
+</head>
+<style>
+    .container {
+        display: inline-block;
+        text-align: center;
+        border: 1px solid;
+        padding: 50px;
+    }
+
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>KIỂM TRA SỐ NGUYÊN TỐ</h1>
+        <p>Nhập số nguyên tố:</p>
+        <input id="integer" type="number">
+        <button id="btn" type="submit" onclick="intergerNumber()">Kiểm tra</button>
+        <br><br>
+        <div id="result"></div>
+    </div>
+
+</body>
+<script>
+    //  Tạo biến
+    let integerInput = document.getElementById("integer")
+    function intergerNumber() {
+        // Tạo biến n nhận giá trị từ phía trên
+        let n = integerInput.value;
+        // Tạo biến cờ hiệu nhận giá trị đúng và làm điều kiện để xét số nguyên tố
+        let flag = true;
+        // Nếu n bé hơn 2 thì trả ra false
+        if (n < 2) {
+            flag = false;
+            // Nếu n = 2 thì trả ra true
+        } else if (n == 2) {
+            flag = true;
+            // Nếu n chia 2 = 0 thì trả ra false
+        } else if (n % 2 == 0) {
+            flag = false;
+        } else {
+            // biến sẽ chạy từ 2 đến n
+            for (var i = 2; i < n; i++) {
+                // Nếu n chia hết cho i thì trả ra false và dừng vòng lặp chuyển đến câu lệnh tiếp theo
+                if (n % i == 0) {
+                    flag = false;
+                    break;
+                }
+            }
+        }
+        // Kiểm tra biến flag
+        if (flag == true) {
+            document.getElementById("result").innerHTML = n + " là số nguyên tố";
+        } else {
+            document.getElementById("result").innerHTML = n + " không phải là số nguyên tố";
+        }
+
+        let input = document.querySelectorAll('#integer');
+        input.forEach(input => {
+            input.value = '';
+        });
+
+    }
+</script>
+</html>
